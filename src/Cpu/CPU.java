@@ -17,8 +17,8 @@ public class CPU implements ICPU {
 
     @Override
     public void exec(Command command) {
-        String description = command.GetDescription();
-        switch (description.split(" ")[0]) {
+        String[] arguments = command.GetArguments();
+        switch (command.GetName()) {
             case "ADD" :
                 registers.put("D", registers.get("A") + registers.get("B"));
                 break;
@@ -26,26 +26,23 @@ public class CPU implements ICPU {
                 registers.put("D", registers.get("A") / registers.get("B"));
                 break;
             case "INIT" :
-                memory[Integer.parseInt(description.split(" ")[1])] =
-                       Integer.parseInt(description.split(" ")[2]);
+                memory[Integer.parseInt(arguments[0])] = Integer.parseInt(arguments[1]);
                 break;
             case "LD" :
-                registers.put(description.split(" ")[1],
-                              memory[Integer.parseInt(description.split(" ")[2])]);
+                registers.put(arguments[0], memory[Integer.parseInt(arguments[1])]);
                 break;
             case "MULT" :
                 registers.put("D", registers.get("A") * registers.get("B"));
                 break;
             case "MV" :
-                registers.put(description.split(" ")[1], registers.get(description.split(" ")[2]));
+                registers.put(arguments[0], registers.get(arguments[1]));
                 break;
             case "PRINT" :
                 System.out.printf("A = " + registers.get("A") + ", B = " + registers.get("B") +
                                   ", C = " + registers.get("C") + ", D = " + registers.get("D") + "\n");
                 break;
             case "ST" :
-                memory[Integer.parseInt(description.split(" ")[1])] =
-                           registers.get(description.split(" ")[2]);
+                memory[Integer.parseInt(arguments[0])] = registers.get(arguments[1]);
                 break;
             case "SUB" :
                 registers.put("D", registers.get("A") - registers.get("B"));

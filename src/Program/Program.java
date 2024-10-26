@@ -65,8 +65,8 @@ public class Program implements IProgram {
         int maxAdd = 0;
         for (int i = 0; i < n; i++) {
             if ("INIT".equals(prog[i].GetName()) || "ST".equals(prog[i].GetName())) {
-                minAdd = min(minAdd, Integer.parseInt(prog[i].GetDescription().split(" ")[1]));
-                maxAdd = max(maxAdd, Integer.parseInt(prog[i].GetDescription().split(" ")[1]));
+                minAdd = min(minAdd, Integer.parseInt(prog[i].GetArguments()[0]));
+                maxAdd = max(maxAdd, Integer.parseInt(prog[i].GetArguments()[0]));
             }
         }
         System.out.println("[" + minAdd + "..." + maxAdd + "]"); //collectors grouping by
