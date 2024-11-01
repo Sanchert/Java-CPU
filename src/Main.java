@@ -22,16 +22,10 @@ public class Main {
         ICPU cpu = BCPU.build();
         Executor exec = new Executor(cpu);
         exec.run(prog);
-        prog.frequentInstruction();
-        prog.printInstructions();
-        prog.addressRange();
 
-        /*
-            A = 20, B = 25, C = 5, D = 45
-            A = 45, B = 5, C = 5, D = 9
-            INIT
-            [ST, SUB, MULT, DIV, ADD, PRINT, MV, INIT, LD]
-            [10...12]
-        */
+        ProgramAnalyzer pa = new ProgramAnalyzer();
+        pa.init(prog);
+        pa.frequentInstruction();
+        pa.printInstructions();
     }
 }
